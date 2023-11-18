@@ -5,9 +5,32 @@ import (
 	"strconv"
 )
 
+var SPENDING_CATEGORIES []string = []string{
+	"Food",
+	"Shopping",
+	"Travel",
+	"Utility",
+	"Other",
+}
+
+func setExpenseMap(expenseMap map[string]float64) map[string]float64 {
+	if len(expenseMap) == 0{
+		for _, value := range SPENDING_CATEGORIES{
+			expenseMap[value] = 0
+		}
+		return expenseMap
+	} else{
+		return expenseMap
+	}
+}
+
+
 func inputExpenses ()[]float64{
 	var expenses []float64
 	var currentExpenseString string
+	var expenseCategoryMap =  map[string]float64{}
+
+	expenseCategoryMap = setExpenseMap(expenseCategoryMap)
 
 	fmt.Println("What expenses have you incurred so far today? [q to quit]")
 	for currentExpenseString != "q"{
@@ -39,11 +62,11 @@ func sumCosts(spendingData []float64)float64{
 
 func main() {
 
-	var todaysExpenses []float64 = inputExpenses()
-	var summedExpenses float64 = sumCosts(todaysExpenses) 
+	var individualExpenses []float64 = inputExpenses()
+	var summedExpenses float64 = sumCosts(individualExpenses) 
 
 	
-	fmt.Println("Expenses: ", todaysExpenses)
+	fmt.Println("Expenses: ", individualExpenses)
 	fmt.Printf("Your expenses for today add up to %.2f.\n", summedExpenses)
 
 }
