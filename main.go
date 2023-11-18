@@ -25,12 +25,7 @@ func setExpenseMap(expenseMap map[string]float64, categoryIndex int, categoryInc
 	}
 }
 
-
-
-
-
-
-func inputExpenses ()([]float64, map[string]float64){
+func inputExpenses()([]float64, map[string]float64){
 	var expenses []float64
 	var currentExpenseString string
 	var expenseCategoryMap =  map[string]float64{}
@@ -40,10 +35,9 @@ func inputExpenses ()([]float64, map[string]float64){
 	//Make the expenseCategoryMap with a 0 entry for each possible catefory in SPENDING_CATEGORIES
 	expenseCategoryMap = setExpenseMap(expenseCategoryMap, -1, 0)
 
-
+	fmt.Println("——————————————————————————————————————————————————————————")
 input_loop:
 	for{
-		fmt.Println("——————————————————————————————————————————————————————————")
 		fmt.Print("|Enter an expense to record or press 'q' to quit:\n|Expense: ")
 		fmt.Scanln(&currentExpenseString)
 		if currentExpenseString == "q"{
@@ -58,46 +52,46 @@ input_loop:
 		expenses = append(expenses, currentExpenseValue)
 
 
-
-		//Get the expense category
-		for{
-			fmt.Println("|Select the number that corresponds to your expense category: ")
+		//Print prompt and get the expense category
+		fmt.Println("|Select the number that corresponds to your expense category: ")
 			for index, value := range SPENDING_CATEGORIES {
 				indexIncremented := index + 1
 				fmt.Print("|\t(", indexIncremented, ")", value)
 				fmt.Print("\n")
 			}
-			// fmt.Print("\n")
+			
+
+		for{
 			fmt.Print("|Cateogry: ")
 			fmt.Scanln(&spendingCategoryReferenceString)
-
 			if spendingCategoryReferenceString == "q"{
 				expenses = expenses[0: len(expenses) - 1]
+				fmt.Println("——————————————————————————————————————————————————————————\n")
 				break input_loop
 			}
 
 			spendingCategoryReferenceValue, err = strconv.Atoi(spendingCategoryReferenceString)
 			if err != nil {
-				fmt.Println("Category Selection Error: ", err)
-				fmt.Println("Please try to select a category again...")
+				fmt.Println("!\tCategory Selection Error:", err)
+				fmt.Println("!\tPlease try to select a category again...")
 				continue
 			}
 
 			spendingCategoryIndex := spendingCategoryReferenceValue - 1
 			expenseCategoryMap = setExpenseMap(expenseCategoryMap, spendingCategoryIndex, currentExpenseValue)
-			break
 			fmt.Println("——————————————————————————————————————————————————————————\n")
+			break
 
 		}
 
+		// The upper line for the next expense:
 
+
+		fmt.Println("——————————————————————————————————————————————————————————")
 	}
 
 	return expenses, expenseCategoryMap
 }
-
-
-
 
 func sumCosts(spendingData []float64)float64{
 	var totalSpending float64 = 0
