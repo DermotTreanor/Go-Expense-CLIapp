@@ -15,12 +15,31 @@ func main() {
 	var summedExpenses float64 = userinput.SumCosts(individualExpenses) 
 
 
+	//Write userinput to the file
 	err := fileshare.WriteFileData(path, individualExpenses)
 	if err != nil{
-		fmt.Println("THERE'S AN ERROR!", err)
+		fmt.Println("THERE'S A WRITE ERROR!", err)
 	} else{
-		fmt.Println("Oh, good! There's no error!")
+		fmt.Println("Oh, good! There's no WRITE error!")
 	}
+
+
+	//Read the total file
+	var fileData []float64
+	fileData, err = fileshare.ReadFileData(path)
+	if err != nil{
+		fmt.Println("THERE'S A READ ERROR!", err)
+	} else{
+		fmt.Println("Oh, good! There's no READ error!")
+	}
+
+	fmt.Println(fileData)
+
+
+
+
+
+
 	fmt.Print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 	fmt.Println("Map: ", mapOfExpenseToCategory)
 	fmt.Println("Expenses: ", individualExpenses)
@@ -28,5 +47,3 @@ func main() {
 	fmt.Print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 
 }
-
-
