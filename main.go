@@ -16,7 +16,7 @@ func main() {
 
 
 	//Write userinput to the file
-	err := fileshare.WriteFileData(path, individualExpenses)
+	err := fileshare.WritePlainFileFloatData(path, individualExpenses)
 	if err != nil{
 		fmt.Println("THERE'S A WRITE ERROR!", err)
 	} else{
@@ -26,7 +26,7 @@ func main() {
 
 	//Read the total file
 	var fileData []float64
-	fileData, err = fileshare.ReadFileData(path)
+	fileData, err = fileshare.ReadPlainFileFloatData(path)
 	if err != nil{
 		fmt.Println("THERE'S A READ ERROR!", err)
 	} else{

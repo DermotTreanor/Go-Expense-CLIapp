@@ -53,7 +53,7 @@ func fromByteSliceToFloat64Slice(byteSlice []byte) (floatSlice []float64){
 
 
 
-func WriteFileData(path string, expenseSlice []float64) (err error) {
+func WritePlainFileFloatData(path string, expenseSlice []float64) (err error) {
 
 	var dataSlice []byte = fromFloat64SliceToByteSlice(expenseSlice)
 	fmt.Println(string(dataSlice))
@@ -74,7 +74,7 @@ func WriteFileData(path string, expenseSlice []float64) (err error) {
 
 
 
-func ReadFileData(path string) (floatSlice []float64, err error) {
+func ReadPlainFileFloatData(path string) (floatSlice []float64, err error) {
 
 	//When this dataBuffer is set to have a length of 0 with a capacity of 1024 I think we get infinite loop
 	var dataBuffer []byte = make([]byte, 10)
