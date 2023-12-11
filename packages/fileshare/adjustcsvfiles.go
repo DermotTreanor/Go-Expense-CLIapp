@@ -7,6 +7,13 @@ import (
 )
 
 func WriteCSVFile(path string, expenseMap map[string]float64) (err error) {
+	//Create a sorted slice of the headers
+	headers := []string{}
+		for key := range expenseMap{
+			headers = append(headers, key)
+		}
+		sort.Strings(headers)
+	
 	
 	file, err := os.OpenFile(path, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil{
@@ -23,16 +30,11 @@ func WriteCSVFile(path string, expenseMap map[string]float64) (err error) {
 	}
 
 	if fileInfo.Size() == 0 {
-		header := []string{}
-		for key := range expenseMap{
-			header = append(header, key)
-		}
-		sort.Strings(header)
-		writer.Write(header)
+		writer.Write(headers)
 	}
 
-
-
+	something := []string{"hello", "how", "are", "you", "today?"}
+	writer.Write(something)
 	return nil
 }
 
