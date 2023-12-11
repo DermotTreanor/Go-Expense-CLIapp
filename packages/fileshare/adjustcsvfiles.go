@@ -14,6 +14,9 @@ func WriteCSVFile(path string, expenseMap map[string]float64) (err error) {
 	}
 	defer file.Close()
 
+	writer := csv.NewWriter(file)
+	defer writer.Flush()
+
 	fileInfo, err := os.Stat(path)
 	if err != nil{
 		return err
@@ -25,14 +28,12 @@ func WriteCSVFile(path string, expenseMap map[string]float64) (err error) {
 			header = append(header, key)
 		}
 		sort.Strings(header)
-
-		writer := csv.NewWriter(file)
-		defer writer.Flush()
 		writer.Write(header)
-	} else{
-		writer := csv.NewWriter(file)
-		defer writer.Flush()
 	}
+
+
 
 	return nil
 }
+
+
