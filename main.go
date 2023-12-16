@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	var path string = "./program_files/csv_data_from_go.csv"
+	var path string = "./program_files/csv_data_from_app.csv"
 
 	//Use the userinput package to get data from the user and return it. 
 	var individualExpenses, mapOfExpenseToCategory = userinput.InputExpenses()
