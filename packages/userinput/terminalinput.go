@@ -66,7 +66,7 @@ input_loop:
 			fmt.Scanln(&spendingCategoryReferenceString)
 			if spendingCategoryReferenceString == "q"{
 				expenses = expenses[0: len(expenses) - 1]
-				fmt.Println("——————————————————————————————————————————————————————————\n")
+				fmt.Print("——————————————————————————————————————————————————————————\n\n")
 				break input_loop
 			}
 
@@ -79,7 +79,7 @@ input_loop:
 
 			spendingCategoryIndex := spendingCategoryReferenceValue - 1
 			expenseCategoryMap = setExpenseMap(expenseCategoryMap, spendingCategoryIndex, currentExpenseValue)
-			fmt.Println("——————————————————————————————————————————————————————————\n")
+			fmt.Print("——————————————————————————————————————————————————————————\n\n")
 			break
 
 		}

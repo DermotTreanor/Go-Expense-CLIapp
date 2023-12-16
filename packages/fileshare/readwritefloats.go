@@ -51,8 +51,6 @@ func fromByteSliceToFloat64Slice(byteSlice []byte) (floatSlice []float64){
 
 
 
-
-
 func WritePlainFileFloatData(path string, expenseSlice []float64) (err error) {
 
 	var dataSlice []byte = fromFloat64SliceToByteSlice(expenseSlice)

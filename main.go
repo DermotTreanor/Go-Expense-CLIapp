@@ -1,14 +1,14 @@
 package main
 
+
 import (
 	"fmt"
 	"cli_go_program/packages/userinput"
 	"cli_go_program/packages/fileshare"
 )
 
-
 func main() {
-	var path string = "./program_files/data_from_go"
+	var path string = "./program_files/csv_data_from_go.csv"
 
 	//Use the userinput package to get data from the user and return it. 
 	var individualExpenses, mapOfExpenseToCategory = userinput.InputExpenses()
@@ -16,29 +16,14 @@ func main() {
 
 
 	//Write userinput to the file
-	err := fileshare.WritePlainFileFloatData(path, individualExpenses)
+	err := fileshare.WriteCSVFile(path, mapOfExpenseToCategory)
 	if err != nil{
-		fmt.Println("THERE'S A WRITE ERROR!", err)
+		fmt.Println("There was a WRITE error to the CSV file.\n", err)
 	} else{
-		fmt.Println("Oh, good! There's no WRITE error!")
+		fmt.Println("We wrote to the file successfully.")
 	}
 
-
-	//Read the total file
-	var fileData []float64
-	fileData, err = fileshare.ReadPlainFileFloatData(path)
-	if err != nil{
-		fmt.Println("THERE'S A READ ERROR!", err)
-	} else{
-		fmt.Println("Oh, good! There's no READ error!")
-	}
-
-
-
-
-
-
-	fmt.Println(fileData)
+	
 
 	fmt.Print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
 	fmt.Println("Map: ", mapOfExpenseToCategory)
