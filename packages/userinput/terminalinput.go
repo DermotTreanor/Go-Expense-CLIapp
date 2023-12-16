@@ -1,8 +1,11 @@
 package userinput
 
-import(
+import (
 	"fmt"
+	"os"
+	"os/exec"
 	"strconv"
+	"runtime"
 )
 
 
@@ -12,6 +15,16 @@ var SPENDING_CATEGORIES []string = []string{
 	"Travel",
 	"Utility",
 	"Other",
+}
+func clearScreen(){
+	var cmd *exec.Cmd
+	if (runtime.GOOS == "windows"){
+		cmd = exec.Command("cmd", "/c", "cls")
+	} else{
+		cmd = exec.Command("clear")
+	}
+	cmd.Stdout = os.Stdout
+	cmd.Run()
 }
 func setExpenseMap(expenseMap map[string]float64, categoryIndex int, categoryIncrement float64) map[string]float64 {
 	if len(expenseMap) == 0{
@@ -80,6 +93,7 @@ input_loop:
 			spendingCategoryIndex := spendingCategoryReferenceValue - 1
 			expenseCategoryMap = setExpenseMap(expenseCategoryMap, spendingCategoryIndex, currentExpenseValue)
 			fmt.Print("——————————————————————————————————————————————————————————\n\n")
+			clearScreen()
 			break
 
 		}
