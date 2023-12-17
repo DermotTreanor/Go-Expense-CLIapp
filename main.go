@@ -19,8 +19,6 @@ func main() {
 	err := fileshare.WriteCSVFile(path, mapOfExpenseToCategory)
 	if err != nil{
 		fmt.Println("There was a WRITE error to the CSV file.\n", err)
-	} else{
-		fmt.Println("We wrote to the file successfully.")
 	}
 
 	

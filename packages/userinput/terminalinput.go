@@ -54,6 +54,7 @@ input_loop:
 		fmt.Print("|Enter an expense to record or press 'q' to quit:\n|Expense: ")
 		fmt.Scanln(&currentExpenseString)
 		if currentExpenseString == "q"{
+			clearScreen()
 			break
 		}
 		currentExpenseValue, err := strconv.ParseFloat(currentExpenseString, 64)
@@ -79,7 +80,7 @@ input_loop:
 			fmt.Scanln(&spendingCategoryReferenceString)
 			if spendingCategoryReferenceString == "q"{
 				expenses = expenses[0: len(expenses) - 1]
-				fmt.Print("——————————————————————————————————————————————————————————\n\n")
+				clearScreen()
 				break input_loop
 			}
 
