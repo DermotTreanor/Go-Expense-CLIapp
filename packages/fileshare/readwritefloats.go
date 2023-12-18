@@ -74,6 +74,7 @@ func WritePlainFileFloatData(path string, expenseSlice []float64) (err error) {
 
 func ReadPlainFileFloatData(path string) (floatSlice []float64, err error) {
 
+	//IMPORTANT -- INVESTIGATE
 	//When this dataBuffer is set to have a length of 0 with a capacity of 1024 I think we get infinite loop
 	var dataBuffer []byte = make([]byte, 10)
 	var data []byte
